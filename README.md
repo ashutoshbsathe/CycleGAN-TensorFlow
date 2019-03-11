@@ -11,9 +11,11 @@ If you're unsure about how to run this, run `train.py` with flag `-h`
 1. Run `build_data.py` to build your datasets into tfrecords file.(Use `--help` as argument for more information)
 1. Run `train.py`. This will load default settings defined in `train.py`.
 
-`train.py` can be launched with custom flags as defined below:
-```
-flags:
+`train.py` can be launched with custom flags:
+<details>
+  <summary>Expand to view all flags</summary>
+<pre>
+  flags:
 
 .\train.py:
   --A: A tfrecords file for training, default:
@@ -58,4 +60,5 @@ flags:
     (default: 'false')
   --[no]use_lsgan: Use LSGAN(MSE) or CrossEntropyLoss, default: True
     (default: 'true')
-```
+</pre>
+</details>
