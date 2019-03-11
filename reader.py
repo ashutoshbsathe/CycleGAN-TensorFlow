@@ -35,9 +35,9 @@ class Reader():
             tf.summary.image('_input', images)
         return images
     def _preprocess(self, image):
-        image = tf.image.resize_images(image, size=(self.image_width, self.image_height))
+        image = tf.image.resize_images(image, size=(self.image_height, self.image_width))
         image = utils.convert2float(image)
-        image.set_shape([self.image_width, self.image_height, 3])
+        image.set_shape([self.image_height, self.image_width, 3])
         return image
     def test_reader():
         TRAIN_FILE_1 = 'pop1topop2/tfrecords/pop1.tfrecords'
@@ -57,7 +57,7 @@ class Reader():
             threads = tf.train.start_queue_runners(sess=sess, coord=coord)
 
             try:
-                step  =0
+                step  = 0
                 while not coord.should_stop():
                     batch_images1, batch_images2 = sess.run([images_op1, images_op2])
                     print('Image shape: {}'.format(batch_images1))

@@ -78,7 +78,9 @@ def train():
             restore = tf.train.import_meta_graph(meta_graph_path)
             restore.restore(sess, tf.train.latest_checkpoint(checkpoints_dir))
             step = int(meta_graph_path.split('-')[2].split('.')[0])
+            print("Resuming training from step" + str(step))
         else:
+            print("Starting fresh training...")
             sess.run(tf.global_variables_initializer())
             step = 0
         coord = tf.train.Coordinator()
@@ -111,7 +113,7 @@ def train():
                 
                 if(step % 100 == 0):
                     save_path = saver.save(sess, checkpoints_dir + '/model.ckpt', global_step=step)
-                    logging.info('Model saaved at {}'.format(save_path))
+                    logging.info('Model saved at {}'.format(save_path))
                 step += 1
         except KeyboardInterrupt:
             logging.info('Keyboard Interrupt')

@@ -42,9 +42,9 @@ class CycleGAN:
         self.D_A = Discriminator('D_A', self.is_training, norm=norm, use_sigmoid=self.use_sigmoid)
 
         self.fake_a = tf.placeholder(tf.float32,
-            shape=[batch_size, image_width, image_height, 3])
+            shape=[batch_size, image_height, image_width, 3])
         self.fake_b = tf.placeholder(tf.float32,
-            shape=[batch_size, image_width, image_height, 3])
+            shape=[batch_size, image_height, image_width, 3])
         
     def model(self):
         A_reader = Reader(self.A_train_file, name='A', image_width=self.image_width, image_height=self.image_height, batch_size=self.batch_size)

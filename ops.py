@@ -50,9 +50,9 @@ def uk(input, k, reuse=False, norm='instance', is_training=False, name=None, out
         input_shape = input.get_shape().as_list()
         weights = _weights('weights', shape=[3, 3, k, input_shape[3]])
         if not output_height:
-            output_width = input_shape[1] * 2
-            output_height = input_shape[2] * 2
-        output_shape = [input_shape[0], output_width, output_height, k]
+            output_width = input_shape[2] * 2
+            output_height = input_shape[1] * 2
+        output_shape = [input_shape[0], output_height, output_width, k]
         fsconv = tf.nn.conv2d_transpose(input, weights, output_shape=output_shape, strides=[1, 2, 2, 1], padding='SAME')
         normalized = _norm(fsconv, is_training, norm)
         output = tf.nn.relu(normalized)
