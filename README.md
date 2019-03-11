@@ -62,3 +62,9 @@ If you're unsure about how to run this, run `train.py` with flag `-h`
     (default: 'true')
 </pre>
 </details>
+
+## Common Pitfalls :
+1. Make sure that all of your images are in the shape that will be passed to the model. If some images are irregular, the reader may *squeeze* the image to make it of suitable size. This is generally not recommended. Possible solution is to have the image cropped in proper required resolution
+1. If you see inversion of colors(dark colors in place of light colors) for a considerable amount of steps, you should stop the training and restart it. This is called model collapse and the results may look something like the image below:<br>
+![Model Collapse](https://raw.githubusercontent.com/ashutoshbsathe/CycleGAN-TensorFlow/master/images/mode_collapse.png)
+1. Poor results : CycleGANs are sensitive to initial weight initializations. If the results, are unsatisfactory, retraining the model from scratch might help. A lot of people online got incredible results on original datasets after 4th or 5th try so it's worth retrying.
